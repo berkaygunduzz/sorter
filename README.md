@@ -14,6 +14,6 @@ This app DOESN'T give ANY warranty that it will serve well for your ANY purpose
 
 Note: Path must be clear for a smooth experience
 
-Note: Don't add `\` before ` ` (spaces) for path
+Note: Don't add `\` before special chars for path
 
 Example path: `/home/skynet/Nuclear Warheads`
