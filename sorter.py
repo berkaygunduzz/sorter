@@ -124,10 +124,39 @@ class Files:
             Files._scan(f"{path}/{directory}")
 
     @classmethod
-    def _place(cls):
-        """Copyies files by their last modified date
+    def _edit(cls, file):
+        """Adds escape for file path
+        
+        Parameters
+        ----------
+        file : str
+            Path that will be edited
         """
-        os.chdir("/home/berkay")
+        edited = file.replace(" ", "\\ ")
+        edited = edited.replace("(", "\(")
+        edited = edited.replace(")", "\)")
+        edited = edited.replace("|", "\|")
+        edited = edited.replace("<", "\<")
+        edited = edited.replace(">", "\>")
+        edited = edited.replace("$", "\$")
+        edited = edited.replace("&", "\&")
+        edited = edited.replace("%", "\%")
+        edited = edited.replace("{", "\{")
+        edited = edited.replace("}", "\}")
+        edited = edited.replace("'", "\\'")
+        edited = edited.replace("\"", "\\\"")
+        return edited
+
+    @classmethod
+    def _place(cls, path):
+        """Copyies files by their last modified date
+        
+        Parameters
+        ----------
+        path : str
+            Path of folder that will be sorted and copyied
+        """
+        os.chdir(path)
         try:
             os.mkdir("Sorted Files")
         except Exception as e:
@@ -137,9 +166,7 @@ class Files:
             try:
                 date = p.date
                 if date in Files._created:
-                    file = p.name.replace(" ", "\\ ")
-                    time = date.replace(" ", "\\ ")
-                    command = f"cp {file} ./{time}"
+                    command = f"cp {Files._edit(p.name)} ./{Files._edit(date)}"
                     os.system(command)
                 else:
                     try:
@@ -147,12 +174,13 @@ class Files:
                     except Exception as e:
                         print(e)
                     Files._created.append(date)
-                    file = p.name.replace(" ", "\\ ")
-                    time = date.replace(" ", "\\ ")
-                    command = f"cp {file} ./{time}"
+                    command = f"cp {Files._edit(p.name)} ./{Files._edit(date)}"
                     os.system(command)
             except Exception as e:
                 print (e)
+                print (f"""* Problem:\n
+                         * File: {Files._edit(p.name)}\n
+                         * Date: {Files._edit(date)}""")
 
     @classmethod
     def sort(cls, path):
@@ -166,9 +194,8 @@ class Files:
         Files._files = []
         Files._created = []
         Files._scan(path)
-        Files._place()
+        Files._place(path)
         print("Process has been completed!")
 
 if __name__ == "__main__":
     Files.sort(input("Please write full path of folder: "))
-
