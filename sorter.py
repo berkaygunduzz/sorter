@@ -19,9 +19,8 @@ import time
 class Files:
     """
     A class that manages sorting files by last modified date
-
     ...
-    
+
     Attributes
     ----------
     _files : list
@@ -36,7 +35,7 @@ class Files:
         a list that contains months of spring
     _aut : list
         a list that contains months of autumn
-    
+
     Methods
     -------
     _date(m)
@@ -55,7 +54,7 @@ class Files:
     _created = []
 
     _smr = ["Jun", "Jul", "Aug"]
-    _wnt = ["Dec", "Jan", "Fab"]
+    _wnt = ["Dec", "Jan", "Feb"]
     _spr = ["Mar", "Apr", "May"]
     _aut = ["Sep", "Oct", "Nov"]
 
@@ -75,7 +74,7 @@ class Files:
     @classmethod
     def _date(cls, m):
         """Returns season of given string
-        
+
         Parameters
         ----------
         m : str
@@ -95,7 +94,7 @@ class Files:
     @classmethod
     def _add_file(cls, file):
         """Creates an Files object from a file
-        
+
         Parameters
         ----------
         file : str
@@ -109,7 +108,7 @@ class Files:
     @classmethod
     def _scan(cls, path):
         """Creates Files objects recursively from a directory
-        
+
         Parameters
         ----------
         path : str
@@ -126,7 +125,7 @@ class Files:
     @classmethod
     def _edit(cls, file):
         """Adds escape for file path
-        
+
         Parameters
         ----------
         file : str
@@ -150,7 +149,7 @@ class Files:
     @classmethod
     def _place(cls, path):
         """Copyies files by their last modified date
-        
+
         Parameters
         ----------
         path : str
@@ -185,7 +184,7 @@ class Files:
     @classmethod
     def sort(cls, path):
         """End user function to make all magic happen
-        
+
         Parameters
         ----------
         path : str
@@ -194,6 +193,7 @@ class Files:
         Files._files = []
         Files._created = []
         Files._scan(path)
+        print("All files scanned!")
         Files._place(path)
         print("Process has been completed!")
 
