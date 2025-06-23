@@ -11,3 +11,5 @@ This app DOESN'T give ANY warranty that it will serve well for your ANY purpose
 - Download sorter.py file
 - Execute sorter.py file `python3 sorter.py`
 - Write full name of folder
+
+What is this?
